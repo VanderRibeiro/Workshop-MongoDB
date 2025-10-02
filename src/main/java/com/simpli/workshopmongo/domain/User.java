@@ -2,9 +2,14 @@ package com.simpli.workshopmongo.domain;
 
 import java.io.Serializable;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "user")//declara que a classe corresponde a coleção MongoDb
 public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	@Id//define o id como chave primaria
 	private String id;
 	private String name;
 	private String email;
