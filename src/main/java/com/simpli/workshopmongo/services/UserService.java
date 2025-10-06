@@ -26,8 +26,20 @@ public class UserService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 	}
 	
-	public User Insert(User obj) {
+	public User insert(User obj) {
 		return repo.insert(obj);
+	}
+	
+	public User update(User obj) {
+		Optional<User> newObj = repo.findById(obj.getId());
+		User user = newObj.get();
+		updateData(user, obj);
+		return repo.save(user);
+	}
+	
+	private void updateData (User newObj, User obj) {
+		newObj.setName(obj.getName());
+		newObj.setEmail(obj.getEmail());
 	}
 	
 	public void delete(String id) {
